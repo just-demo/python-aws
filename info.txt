@@ -1,14 +1,16 @@
-1. create virtual env:
+1. create virtual env (PyCharm does it automatically):
 > python -m venv venv
 > pip install -r requirements.txt
 
-2. add a dependency
-> venv\Scripts\activate.bat // needed from pure terminal only (PyCharm does it automatically)
+2. activate virtual env (PyCharm does it automatically)
+> venv\Scripts\activate.bat
+
+3. add a dependency
 > pip install boto3
 
-3. run a script
+4. run a script
 > python s3.py
 
-4. add manually exact dependencies to requirements.txt (recommended) or
-   grab existing dependencies before commit (it will bring much more transitive dependencies):
+5. add manually dependencies to requirements.txt (recommended, no need to specify transitive dependencies) or
+   grab installed dependencies (it will include transitive dependencies as well):
 > pip freeze > requirements.txt
