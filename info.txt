@@ -9,5 +9,6 @@
 3. run a script
 > python s3.py
 
-4. save dependencies before commit:
+4. add manually exact dependencies to requirements.txt (recommended) or
+   grab existing dependencies before commit (it will bring much more transitive dependencies):
 > pip freeze > requirements.txt
