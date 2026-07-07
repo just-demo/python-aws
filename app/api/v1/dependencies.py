@@ -1,4 +1,5 @@
 from app.config import settings
+from app.services.dynamodb_service import DynamoDbService
 from app.services.s3_service import S3Service
 from app.services.ssm_service import SsmService
 
@@ -10,3 +11,7 @@ def get_s3_service() -> S3Service:
 
 def get_ssm_service() -> SsmService:
     return SsmService(endpoint_url=settings.aws_endpoint_url)
+
+
+def get_dynamodb_service() -> DynamoDbService:
+    return DynamoDbService(table_name=settings.dynamodb_table_name, endpoint_url=settings.aws_endpoint_url)

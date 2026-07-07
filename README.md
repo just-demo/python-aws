@@ -39,4 +39,4 @@ docker compose -f local-env/docker-compose.yaml up --force-recreate
 - Script path: `<full/path/to>/python-aws/.venv/bin/uvicorn`
 - Parameters: `app.main:app --reload`
 - Working directory: `<full/path/to>/python-aws`
-- Environment variables: `PYTHONUNBUFFERED=1;AWS_REGION=us-east-1;AWS_ACCESS_KEY_ID=dummy;AWS_SECRET_ACCESS_KEY=dummy`
+- Environment variables: `PYTHONUNBUFFERED=1;AWS_DEFAULT_REGION=us-east-1;AWS_ACCESS_KEY_ID=dummy;AWS_SECRET_ACCESS_KEY=dummy`
