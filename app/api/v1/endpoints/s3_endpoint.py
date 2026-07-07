@@ -10,16 +10,6 @@ logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/s3", tags=["s3"])
 
 
-@router.put("/{key}", status_code=204)
-def put_object(
-        key: str,
-        value: str = Body(..., media_type="text/plain"),
-        s3_service: S3Service = Depends(get_s3_service),
-) -> Response:
-    s3_service.put_object(key, value)
-    return Response(status_code=204)
-
-
 @router.get("/", response_model=dict[str, str])
 def get_objects(
         s3_service: S3Service = Depends(get_s3_service),
@@ -33,6 +23,16 @@ def get_object(
         s3_service: S3Service = Depends(get_s3_service),
 ) -> str:
     return s3_service.get_object(key)
+
+
+@router.put("/{key}", status_code=204)
+def put_object(
+        key: str,
+        value: str = Body(..., media_type="text/plain"),
+        s3_service: S3Service = Depends(get_s3_service),
+) -> Response:
+    s3_service.put_object(key, value)
+    return Response(status_code=204)
 
 
 @router.delete("/{key}", status_code=204)
