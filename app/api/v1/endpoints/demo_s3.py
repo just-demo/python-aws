@@ -20,6 +20,13 @@ def put_object(
     return Response(status_code=204)
 
 
+@router.get("/", response_model=dict[str, str])
+def get_objects(
+        s3_service: S3Service = Depends(get_s3_service),
+) -> dict[str, str]:
+    return s3_service.get_objects()
+
+
 @router.get("/{key}", response_class=PlainTextResponse)
 def get_object(
         key: str,

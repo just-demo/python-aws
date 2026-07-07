@@ -20,6 +20,10 @@ class S3Service:
         )
         return response["Body"].read().decode("utf-8")
 
+    def get_objects(self) -> dict[str, str]:
+        keys = [obj["Key"] for obj in self.s3_client.list_objects(Bucket=self.bucket).get("Contents", [])]
+        return {key: self.get_object(key) for key in keys}
+
     def delete_object(self, key: str) -> None:
         self.s3_client.delete_object(
             Bucket=self.bucket,
