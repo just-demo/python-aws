@@ -5,6 +5,7 @@ class Settings(BaseSettings):
     aws_endpoint_url: str | None = None
     s3_bucket: str
     dynamodb_table_name: str
+    sqs_queue_url: str
 
     model_config = SettingsConfigDict(
         env_file="demo.env",

@@ -39,4 +39,63 @@ docker compose -f local-env/docker-compose.yaml up --force-recreate
 - Script path: `<full/path/to>/python-aws/.venv/bin/uvicorn`
 - Parameters: `app.main:app --reload`
 - Working directory: `<full/path/to>/python-aws`
-- Environment variables: `PYTHONUNBUFFERED=1;AWS_DEFAULT_REGION=us-east-1;AWS_ACCESS_KEY_ID=dummy;AWS_SECRET_ACCESS_KEY=dummy`
+- Environment variables:
+  `PYTHONUNBUFFERED=1;AWS_DEFAULT_REGION=us-east-1;AWS_ACCESS_KEY_ID=dummy;AWS_SECRET_ACCESS_KEY=dummy`
+
+## Test S3
+
+```
+aws s3api put-object \
+  --endpoint-url=http://localhost:4566 \
+  --bucket demo-s3-bucket \
+  --key just-demo \
+  --body <path/to/local/file> \
+  --region us-east-1
+```
+
+## Test Kinesis:
+
+```
+aws kinesis put-record \
+  --endpoint-url=http://localhost:4566 \
+  --region us-east-1 \
+  --stream-name demo-kinesis-input-stream-name \
+  --partition-key dummy \
+  --cli-binary-format raw-in-base64-out \
+  --data '{"user_id": "123", "order_id": "456"}'
+```
+
+or
+
+```
+aws kinesis put-record \
+  --endpoint-url=http://localhost:4566 \
+  --region us-east-1 \
+  --stream-name demo-kinesis-input-stream-name \
+  --partition-key dummy \
+  --cli-binary-format raw-in-base64-out \
+  --data file://just-demo.json
+```
+
+## Test SQS
+
+Send a message:
+
+```
+aws sqs send-message \
+  --message-body "Just Demo" \
+  --message-group-id "group-1" \
+  --message-deduplication-id "$(uuidgen)" \
+  --queue-url http://localhost:4566/000000000000/demo-sqs-queue-name.fifo \
+  --endpoint-url=http://localhost:4566 \
+  --region us-east-1
+```
+
+Verify no messages left:
+
+````
+aws sqs receive-message \
+  --endpoint-url=http://localhost:4566 \
+  --queue-url http://localhost:4566/000000000000/demo-sqs-queue-name.fifo \
+  --region us-east-1
+````
