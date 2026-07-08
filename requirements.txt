@@ -10,9 +10,9 @@ annotated-types==0.7.0
     # via pydantic
 anyio==4.14.1
     # via starlette
-boto3==1.43.41
+boto3==1.43.43
     # via -r requirements.in
-botocore==1.43.41
+botocore==1.43.43
     # via
     #   boto3
     #   s3transfer
@@ -59,5 +59,5 @@ typing-inspection==0.4.2
     #   pydantic-settings
 urllib3==2.7.0
     # via botocore
-uvicorn==0.50.2
+uvicorn==0.51.0
     # via -r requirements.in
