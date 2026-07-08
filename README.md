@@ -125,3 +125,11 @@ docker run \
   -e DEMO_SQS_QUEUE_URL=http://localstack:4566/000000000000/demo-sqs-queue-name.fifo \
   python-aws
 ```
+
+## Run Tests
+
+From project root run:
+
+```
+python -m pytest
+```
