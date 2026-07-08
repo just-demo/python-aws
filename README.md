@@ -99,3 +99,14 @@ aws sqs receive-message \
   --queue-url http://localhost:4566/000000000000/demo-sqs-queue-name.fifo \
   --region us-east-1
 ````
+
+
+## Test SNS
+Trigger publishing with API and then verify:
+
+````
+aws sqs receive-message \
+  --endpoint-url=http://localhost:4566 \
+  --queue-url http://localhost:4566/000000000000/demo-sns-topic-name-verifier \
+  --region us-east-1
+````

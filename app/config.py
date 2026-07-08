@@ -6,6 +6,7 @@ class Settings(BaseSettings):
     s3_bucket: str
     dynamodb_table_name: str
     sqs_queue_url: str
+    sns_topic_arn: str
 
     model_config = SettingsConfigDict(
         env_file="demo.env",
