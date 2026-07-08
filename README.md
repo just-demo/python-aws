@@ -100,8 +100,8 @@ aws sqs receive-message \
   --region us-east-1
 ````
 
-
 ## Test SNS
+
 Trigger publishing with API and then verify:
 
 ````
@@ -110,3 +110,18 @@ aws sqs receive-message \
   --queue-url http://localhost:4566/000000000000/demo-sns-topic-name-verifier \
   --region us-east-1
 ````
+
+## Docker Deployment
+
+```
+docker build -t python-aws .
+docker run \
+  --network local-env_default \
+  -p 8000:8000 \
+  -e AWS_DEFAULT_REGION=us-east-1 \
+  -e AWS_ACCESS_KEY_ID=dummy \
+  -e AWS_SECRET_ACCESS_KEY=dummy \
+  -e DEMO_AWS_ENDPOINT_URL=http://localstack:4566 \
+  -e DEMO_SQS_QUEUE_URL=http://localstack:4566/000000000000/demo-sqs-queue-name.fifo \
+  python-aws
+```
