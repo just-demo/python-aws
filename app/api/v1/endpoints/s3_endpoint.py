@@ -3,7 +3,7 @@ import logging
 from fastapi import APIRouter, Depends, Body, Response
 from fastapi.responses import PlainTextResponse
 
-from app.api.v1.dependencies import get_s3_service
+from app.dependencies import get_s3_service
 from app.services.s3_service import S3Service
 
 logger = logging.getLogger(__name__)

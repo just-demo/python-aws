@@ -3,7 +3,7 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, Body, Response
 
-from app.api.v1.dependencies import get_dynamodb_service
+from app.dependencies import get_dynamodb_service
 from app.models.dynamodb_item import DynamoDbItem
 from app.services.dynamodb_service import DynamoDbService
 

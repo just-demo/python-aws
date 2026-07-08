@@ -2,7 +2,7 @@ import logging
 
 from fastapi import APIRouter, Depends, Body, Response
 
-from app.api.v1.dependencies import get_sns_service
+from app.dependencies import get_sns_service
 from app.services.sns_service import SnsService
 
 logger = logging.getLogger(__name__)

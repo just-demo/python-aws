@@ -3,7 +3,7 @@ import logging
 from fastapi import APIRouter, Depends, Body, Response
 from fastapi.responses import PlainTextResponse
 
-from app.api.v1.dependencies import get_ssm_service
+from app.dependencies import get_ssm_service
 from app.services.ssm_service import SsmService
 
 logger = logging.getLogger(__name__)
