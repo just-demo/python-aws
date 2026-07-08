@@ -43,4 +43,6 @@ async def lifespan(app: FastAPI):
         yield
     finally:
         stop_event.set()
-        thread.join(timeout=25)
+        # Reducing timeout to spead-up testing. Normally it must be bigger than WaitTimeSeconds
+        # thread.join(timeout=25)
+        thread.join(timeout=1)
